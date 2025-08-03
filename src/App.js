@@ -1,38 +1,33 @@
 import firebase from "firebase/compat/app";
 import { db } from "./firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDoc, query, getDocs, doc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { getFirestore } from "firebase/firestore";
 
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-    const data = doc.data();
+// Step 1: Query vozila
+const q = query(collection(db, "vozila"));
+const snapShot = await getDocs(q);
 
-    console.log(data.name);
+snapShot.forEach(async (docSnap) => {
+    const voziloData = docSnap.data();
+    console.log(docSnap.id, " => ", voziloData);
+
+    const userRef = voziloData.user; // ✅ This is a DocumentReference
+
+    if (userRef) {
+        const userSnap = await getDoc(userRef); // ✅ Fetch the referenced user doc
+        if (userSnap.exists()) {
+            console.log("User data:", userSnap.data());
+        } else {
+            console.log("User does not exist");
+        }
+    }
 });
-
-// console.log(scooterData[0].baterija);
 
 function App() {
     const [vozila, setVozila] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // const ref = getFirestore().collection("Scooterino");
-
-    // function getVozila(){
-    //   setLoading(true);
-    //   ref.onSnapshot((querySnapshot)=>{
-    //     const items = [];
-    //     querySnapshot.forEach((doc)=>{
-    //       items.push(doc.data());
-    //     });
-    //     setVozila(items);
-    //     setLoading(false);
-    //   })
-    // }
-    //   useEffect(()=>{
-    //     getVozila();
-    //   },[]);
     if (loading) {
         return <h1>samo trenutak stranica se učitava</h1>;
     }

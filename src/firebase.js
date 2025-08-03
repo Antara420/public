@@ -1,15 +1,14 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCcsZmScxtiFVDC7AIG7fQPKxefgQgjs-c",
-  authDomain: "scooterino-projekt-7b6c6.firebaseapp.com",
-  databaseURL: "https://scooterino-projekt-7b6c6-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "scooterino-projekt-7b6c6",
-  storageBucket: "scooterino-projekt-7b6c6.firebasestorage.app",
-  messagingSenderId: "702494137916",
-  appId: "1:702494137916:web:d497d653126ee8e556ed39",
-  measurementId: "G-SWVTZMS4QJ"
+    apiKey: "AIzaSyC--q9Sou7yJepquWI4F21Ak_OlRRsm2l4",
+    authDomain: "testproject-5b26b.firebaseapp.com",
+    projectId: "testproject-5b26b",
+    storageBucket: "testproject-5b26b.firebasestorage.app",
+    messagingSenderId: "1072313707446",
+    appId: "1:1072313707446:web:b980cdc8cf3753c2412f17",
+    measurementId: "G-4T9E2WG7JT",
 };
 
 const app = initializeApp(firebaseConfig);

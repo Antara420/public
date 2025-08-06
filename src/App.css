@@ -1,1 +1,118 @@
+ *   {margin: 0;
+    padding: 0;
+    box-sizing: border-box;}
+
+img {display: block;
+  max-width: 100%;
+  height: auto;}
+
+body{font-family: system-ui, sans-serif;
+    color: #333;
+    background-color: #f6f8fa;}
+
+/*glavni grid layout*/
+.page-layout{display: flex;
+  flex-direction: column;
+  height: 100svh;}
+
+
+.cigla-wrap{
+  max-width:80svw;
+  width: 100%;
+  margin: 0 auto;
+}
+/*main*/
+.stranica{padding: 40px;
+    z-index: 1;
+    display: flexbox;}
+
+.stranica h1{margin-bottom: 20px;
+    font-size: 2rem;
+    color: white;}
  
+/*filter gumbi*/
+.filters{display: flex;
+    z-index: 1;
+    gap: 15px;
+    margin: 10px;
+    flex-wrap: wrap;
+    margin: 20px;}
+.filters button{padding: 10px 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #e2e6ea;
+    cursor:pointer;}
+.filters button:hover, .filters .active{
+    background-color: #333;
+    color: white;}
+.card-grid{display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;}
+
+.cijena{display: inline-block;
+    background-color: red;
+    color: black;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+    font-weight: 1000;
+   
+    gap: 25px;
+    border: solid black 2px;
+    }
+    
+
+.card{border-radius: 8px;
+    font-size: 18px;
+    
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(18, 41, 216, 0.658);
+    padding: 20px;
+    transition: transform 0.3 ease;
+    opacity: 93%;}
+.card:hover{cursor: pointer;
+    transform: translateY(-5px);
+    transition: transform 0.15s ease-in-out;
+    box-shadow: 0 4px 12px rgba(254, 17, 33, 0.658);}
+.tags{display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: nowrap;
+    float: left;}
+.tags span{background-color: #eef0f2;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 0.75rem;}
+.more-btn{display: inline-block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;}
+.more-btn:hover{background-color: darkgreen;}
+.site-footer{
+    
+    width: 100%;
+    background-color: #222;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font-size: 0.9rem;}
+
+
+
+/*sitnice*/
+h3{position: relative;
+    text-align: center;
+    padding: 2px;}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

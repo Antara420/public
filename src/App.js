@@ -1,48 +1,94 @@
-import firebase from "firebase/compat/app";
-import { db } from "./firebase";
-import { collection, getDoc, query, getDocs, doc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { getFirestore } from "firebase/firestore";
-
-// Step 1: Query vozila
-const q = query(collection(db, "vozila"));
-const snapShot = await getDocs(q);
-
-snapShot.forEach(async (docSnap) => {
-    const voziloData = docSnap.data();
-    console.log(docSnap.id, " => ", voziloData);
-
-    const userRef = voziloData.user; // ✅ This is a DocumentReference
-
-    if (userRef) {
-        const userSnap = await getDoc(userRef); // ✅ Fetch the referenced user doc
-        if (userSnap.exists()) {
-            console.log("User data:", userSnap.data());
-        } else {
-            console.log("User does not exist");
-        }
-    }
-});
-
+import { collection, query, getDocs, getDoc, where } from "firebase/firestore";
+import { db } from "./firebase";
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Pocetna from './components/Pocetna';
+import ProizvodDetalji from './components/ProizvodDetalji';
+import Adresa from "./components/Adresa";
+import Kontakt from "./components/Kontakt";
 function App() {
-    const [vozila, setVozila] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [prodaja, setProdaja] = useState([]);
+  const [selectedTag, setSelectedTag] = useState("svi");
 
-    if (loading) {
-        return <h1>samo trenutak stranica se učitava</h1>;
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      let q;
+      if (selectedTag === "svi") {
+        q = query(collection(db, "prodaja"));
+      } else {
+        q = query(collection(db, "prodaja"), where("tag", "==", selectedTag));
+      }
 
-    return (
-        <div>
-            <h1>Vozila</h1>
-            {vozila.map((vozilo) => (
-                <div key={vozilo.id}>
-                    <h2>{vozilo.pogon}</h2>
-                    <p>{vozilo.gume}</p>
-                </div>
-            ))}
+      const snapShot = await getDocs(q);
+      const vozila = [];
+
+      for (const docSnap of snapShot.docs) {
+        const voziloData = docSnap.data();
+        let korisnikIme = "Nepoznat korisnik";
+
+        if (voziloData.user) {
+          try {
+            const userSnap = await getDoc(voziloData.user);
+            if (userSnap.exists()) {
+              const userData = userSnap.data();
+              korisnikIme = `${userData.ime || ""} ${userData.prezime || ""}`.trim();
+            }
+          } catch (err) {
+            console.error("Greška kod korisnika:", err);
+          }
+        }
+
+        vozila.push({
+          id: docSnap.id,
+          name: voziloData.name || "Nepoznati proizvod",
+          ukratko: voziloData.ukratko || "",
+          cijena: voziloData.cijena || "",
+          tag: voziloData.tag || "",
+          motor: voziloData.motor || "",
+          baterija: voziloData.baterija || "",
+          zaslon: voziloData.zaslon || "",
+          tezina: voziloData.tezina || "",
+          okvir: voziloData.okvir || "",
+          pogon: voziloData.pogon || "",
+          suspenzija: voziloData.suspenzija || "",
+          kotaci: voziloData.kotaci || "",
+          kocnice: voziloData.kocnice || "",
+          gume: voziloData.gume || "",
+          pribor: voziloData.pribor || "",
+          sastav: voziloData.sastav || "",
+          skladistenje: voziloData.skladistenje || "",
+          ogranicenje: voziloData.ogranicenje || "",
+          model: voziloData.model || "",
+          slike: voziloData.slike || [],
+          slika: voziloData.slika || "",
+          korisnik: korisnikIme
+        });
+      }
+
+      setProdaja(vozila);
+    };
+
+    fetchData();
+  }, [selectedTag]);
+
+  return (
+    
+      <div className='page-layout'>
+        <div className='header'>
+          <Navbar />
         </div>
-    );
+
+        <Routes>
+          <Route path="/" element={<Pocetna prodaja={prodaja} selectedTag={selectedTag}setSelectedTag={setSelectedTag}/>}/>
+          <Route path="/adresa" element={<Adresa />} />
+          <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/proizvod/:id" element={<ProizvodDetalji />} />
+        </Routes>
+      </div>
+    
+  );
 }
 
 export default App;

@@ -119,32 +119,30 @@ const handleKomentarSubmit = async (e) => {
       </div>
 
       <div className='komentari'>
-  <h3>Komentari</h3>
+        <h3>Komentari</h3>
+        {komentari.length === 0 && <p>Nema komentara još.</p>}
+        <ul>
+          {komentari.map((komentar) => (
+          <li key={komentar.id}>
+            <strong>{komentar.korisnik}:</strong> {komentar.tekst}
+          </li>
+        ))}
+       </ul>
 
-  {komentari.length === 0 && <p>Nema komentara još.</p>}
-  <ul>
-    {komentari.map((komentar) => (
-      <li key={komentar.id}>
-        <strong>{komentar.korisnik}:</strong> {komentar.tekst}
-      </li>
-    ))}
-  </ul>
-
-  {user ? (
-    <form onSubmit={handleKomentarSubmit}>
-      <textarea
-        value={noviKomentar}
-        onChange={(e) => setNoviKomentar(e.target.value)}
-        placeholder="Napiši komentar..."
-        rows={3}
-        required
-      />
-      <button type="submit">Pošalji</button>
-    </form>
+        {user ? (
+        <form onSubmit={handleKomentarSubmit}>
+        <textarea
+          value={noviKomentar}
+          onChange={(e) => setNoviKomentar(e.target.value)}
+          placeholder="Napiši komentar..."
+          rows={3}
+          required />
+          <button type="submit">Pošalji</button>
+        </form>
   ) : (
-    <p>Morate biti prijavljeni da biste ostavili komentar.</p>
+        <p>Morate biti prijavljeni da biste ostavili komentar.</p>
   )}
-</div>
+      </div>
 
       <div className='site-footer'>
         &copy; 2025. Sva prava pridržana.

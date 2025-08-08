@@ -22,28 +22,25 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
           <div className='card-grid'>
             {prodaja.map((vozilo) => (
              <div className='card'>
-  <div className='card-left'>
-    {vozilo.slika && (
-      <img src={vozilo.slika} alt={vozilo.name || "Slika proizvoda"} />
-    )}
-  </div>
+                <div className='card-left'>
+                  {vozilo.slika && (
+                  <img src={vozilo.slika} alt={vozilo.name || "Slika proizvoda"} />
+                  )}
+                </div>
 
-  <div className='card-right'>
-    <h2>{vozilo.name}</h2>
-    {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
-    {vozilo.pribor && (<p><strong>Pribor:</strong> {vozilo.pribor}</p>)}
-    <p className='tags'><strong>Tag:</strong> <span>{vozilo.tag}</span></p>
-    <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo, id: vozilo.id })}>
-      Dodaj u košaricu – {vozilo.cijena},00 €
-    </button>
-    <Link to={`/proizvod/${vozilo.id}`} className='more-btn'>Više informacija</Link>
-  </div>
-</div>
-
+             <div className='card-right'>
+               <h2>{vozilo.name}</h2>
+               {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
+               {vozilo.pribor && (<p><strong>Pribor:</strong> {vozilo.pribor}</p>)}
+               <p className='tags'><strong>Tag:</strong> <span>{vozilo.tag}</span></p>
+               <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo, id: vozilo.id })}>Dodaj u košaricu – {vozilo.cijena},00 €</button>
+               <Link to={`/proizvod/${vozilo.id}`} className='more-btn'>Više informacija</Link>
+              </div>
+             </div>
             ))}
+
           </div>
-          <br />
-        </div>  
+          </div>  
       </div>
           <div className='site-footer'>
             &copy; 2025. Sva prava pridržana.

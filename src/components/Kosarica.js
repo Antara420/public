@@ -40,56 +40,55 @@ if (kosarica.length === 0) return (
                 
                   <div class="leefi" >
                         <ul >
-                        {kosarica.map((p, index) => (
-                        <li key={index}>
-                        <img src={p.slika} alt={p.name} />
-                        <div className="item-info">
-                        <strong>{p.name}</strong>
-                        <span>{p.cijena} €</span>
-                      <button onClick={() => ukloniIzKosarice(p.id)}>Ukloni</button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                          {kosarica.map((p, index) => (
+                          <li key={index}>
+                              <img src={p.slika} alt={p.name} />
+                              <div className="item-info">
+                              <strong>{p.name}</strong>
+                              <span>{p.cijena} €</span>
+                              <button onClick={() => ukloniIzKosarice(p.id)}>Ukloni</button>
+                              </div>
+                          </li>))}
+                        </ul>
                   </div>
                   <div class="desni22">
                     <button onClick={isprazniKosaricu}>Isprazni košaricu</button><br/><br/><br/>
                     <button onClick={() => setPrikaziFormu(true)}>Plaćanje</button>
               
-              {prikaziFormu && (
-                <div className="modal">
-                  <div className="modal-content">
-                    <span className="close" onClick={() => setPrikaziFormu(false)}>&times;</span>
-                    <h3>Unesite podatke za plaćanje</h3>
-                    <form onSubmit={handleSubmit}>
-                      <label>Ime i prezime:</label>
-                      <input type="text" required />
+                    {prikaziFormu && (
+                       <div className="modal">
+                          <div className="modal-content">
+                            <span className="close" onClick={() => setPrikaziFormu(false)}>&times;</span>
+                            <h3>Unesite podatke za plaćanje</h3>
+                            <form onSubmit={handleSubmit}>
+                              <label>Ime i prezime:</label>
+                              <input type="text" required />
               
-                      <label>Adresa:</label>
-                      <input type="text" required />
+                              <label>Adresa:</label>
+                              <input type="text" required />
               
-                      <label>Grad:</label>
-                      <input type="text" required />
+                              <label>Grad:</label>
+                              <input type="text" required />
               
-                      <label>Poštanski broj:</label>
-                      <input type="text" required />
+                              <label>Poštanski broj:</label>
+                              <input type="text" required />
               
-                      <label>Način plaćanja:</label>
-                      <select required>
-              <option value="">Odaberi</option>
-              <option value="kartica">Kartica</option>
-              <option value="pouzeće">Pouzeće</option>
-                      </select>
+                              <label>Način plaćanja:</label>
+                              <select required>
+                               <option value="">Odaberi</option>
+                               <option value="kartica">Kartica</option>
+                               <option value="pouzeće">Pouzeće</option>
+                             </select>
               
-                      <button type="submit">Potvrdi plaćanje</button>
-                    </form>
+                            <button type="submit">Potvrdi plaćanje</button>
+                           </form>
                   </div>
                 </div>
               )}
-                          </div>
-              </div>
+                  </div>
+            </div>
           </div>
-      </div>
+    </div>
 
       <div className='site-footer'>
               &copy; 2025

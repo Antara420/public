@@ -7,8 +7,15 @@ import Navbar from './components/Navbar';
 import Pocetna from './components/Pocetna';
 import ProizvodDetalji from './components/ProizvodDetalji';
 import Adresa from "./components/Adresa";
-import Kontakt from "./components/Kontakt";
+import Prijava from "./components/Prijava";
+import Registracija from "./components/Registracija";
+import { AuthProvider } from "./components/AuthContext";
+import { CartProvider } from "./components/CartContext";
+import Kosarica from "./components/Kosarica";
+
+
 function App() {
+
   const [prodaja, setProdaja] = useState([]);
   const [selectedTag, setSelectedTag] = useState("svi");
 
@@ -75,19 +82,24 @@ function App() {
 
   return (
     
-      <div className='page-layout'>
+      <AuthProvider>
+        <CartProvider>
+        <div className='page-layout'>
         <div className='header'>
           <Navbar />
         </div>
 
         <Routes>
-          <Route path="/" element={<Pocetna prodaja={prodaja} selectedTag={selectedTag}setSelectedTag={setSelectedTag}/>}/>
+          <Route path="/" element={<Pocetna prodaja={prodaja} selectedTag={selectedTag} setSelectedTag={setSelectedTag}/>}/>
           <Route path="/adresa" element={<Adresa />} />
-          <Route path="/kontakt" element={<Kontakt />} />
+          <Route path="/kosarica" element={<Kosarica />} />
+          <Route path="/prijava" element={<Prijava />} />
           <Route path="/proizvod/:id" element={<ProizvodDetalji />} />
-        </Routes>
+          <Route path="/registracija" element={<Registracija/>} />
+          </Routes>
       </div>
-    
+        </CartProvider>
+      </AuthProvider>
   );
 }
 

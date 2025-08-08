@@ -1,25 +1,41 @@
 import './navbar.css';
 import logo6 from '../slike/ikona/logo.png';
 import { Link } from 'react-router-dom';
-import Adresa from './Adresa.js';
-import Kontakt from './Kontakt.js';
-import Pocetna from './Pocetna.js';
+import { useAuth } from "./AuthContext";
+import Adresa from './Adresa';
+import Pocetna from './Pocetna';
+import Prijava from './Prijava';
+import Registracija from './Registracija';
+import { useCart } from './CartContext';
 
 const Navbar = () => {
-    return(
-        <div className='nav'>
-            <div className='nav-logo'>
-                <Link to="/"><img src={logo6} className='logo' alt="Logo" /></Link>
-</div>
-            
-           <div>
-             <ul className='nav-menu'>
-                 <li><Link to="/">Shop</Link></li>
-                 <li><Link to="/Adresa">Adresa</Link></li>
-                 <li className='nav-contact'><Link to="/Kontakt">Kontakt</Link></li>
-            </ul>
-           </div>
-        </div>
-    );
-}
+  const {kosarica}=useCart();
+    const { user, logout } = useAuth();
+
+    return (
+    <div className='nav'>
+      <div className='nav-logo'>
+        <Link to="/"><img src={logo6} className='logo' alt="Logo" /></Link>
+      </div>
+
+      <div>
+        <ul className='nav-menu'>
+          <li><Link to="/">Shop</Link></li>
+          <li><Link to="/adresa">Adresa</Link></li>
+          <li><Link to="/kosarica">Košarica({kosarica.length})</Link></li>
+
+          {user ? (
+            <>
+              <li className='nav-user'>Pozdrav, {user.displayName || user.email}</li>
+              <li><button className='logout-button' onClick={logout}>Odjavi se</button></li>
+            </>
+          ) : (
+            <li className='nav-contact'><Link to="/Prijava">Prijava</Link></li>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 export default Navbar;

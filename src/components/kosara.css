@@ -1,0 +1,153 @@
+.kosara {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.kosara .levi {
+  flex: 2;
+  
+}
+
+.leefi{float: left;
+  height: 450px;
+width: 400px;}
+
+.kosara .desni {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.kosara ul {
+  list-style: none;
+  padding: 0;
+}
+
+.kosara li {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.kosara img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.kosara .item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kosara .item-info strong {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.kosara .item-info span {
+  color: #444;
+  font-size: 16px;
+}
+
+.kosara button {
+  margin-top: 10px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.kosara button:hover {
+  background-color: #a93226;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 15px;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2c7a7b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #225e5e;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.kosara h2{color: white;
+  font-size: 32px;
+  text-align: center;
+}
+
+.ciglica{
+  background-color: #ddd;
+  text-align: center;
+  align-items: center;
+}
+.cigla-wrap h1{color: white;}

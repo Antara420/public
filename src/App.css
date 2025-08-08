@@ -8,18 +8,27 @@ img {display: block;
 
 body{font-family: system-ui, sans-serif;
     color: #333;
-    background-color: #f6f8fa;}
+    background-color: #f6f8fa;
+background-image: url('../public/logo.png');
+background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+   background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;}
 
 /*glavni grid layout*/
 .page-layout{display: flex;
   flex-direction: column;
-  height: 100svh;}
+  height: 100svh;
+}
 
 
 .cigla-wrap{
   max-width:80svw;
   width: 100%;
   margin: 0 auto;
+  opacity: 96%;
 }
 /*main*/
 .stranica{padding: 40px;
@@ -46,7 +55,7 @@ body{font-family: system-ui, sans-serif;
     background-color: #333;
     color: white;}
 .card-grid{display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;}
 
 .cijena{display: inline-block;
@@ -66,7 +75,7 @@ body{font-family: system-ui, sans-serif;
 
 .card{border-radius: 8px;
     font-size: 18px;
-    
+     border-radius: 8px;
     background-color: white;
     box-shadow: 0 4px 12px rgba(18, 41, 216, 0.658);
     padding: 20px;
@@ -115,4 +124,62 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+.main-content h1{color: white;
+    font-size: 32px;}
+
+    .card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-content img {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.card-info {
+  flex: 1;
+}
+
+.card-info h2 {
+  margin-top: 0;
+}
+
+.card-info input[type="range"] {
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.card-left img {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.card-right {
+  flex: 1;
+  height: 230px;
+  overflow: auto;
+}
+
+.card-right h2 {
+  margin-top: 0;
+}
+
+.card-right p {
+  margin: 5px 0;
 }

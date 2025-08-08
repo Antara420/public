@@ -15,18 +15,7 @@
     background-color: #333;
     color: white;}
 
-.cijena{display: inline-block;
-    background-color: red;
-    color: black;
-    text-decoration: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    transition: background 0.2s ease;
-    font-weight: 1000;
-    float: right;
-    gap: 25px;
-    border: solid black 2px;}
+.naslo-adresa{  margin-bottom: 20px;}
 
 .cigla h2{font-size: 30px;
     text-align: center;}
@@ -42,7 +31,8 @@ text-wrap: nowrap;}
   gap: 30px;
   padding: 20px;
   max-width: 1200px;
-  margin: 0 auto;}
+  margin: 0 auto;
+height: 580px;}
 
   
 .levi {
@@ -50,9 +40,11 @@ text-wrap: nowrap;}
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 500px;
 }
 .desni{ flex: 1;
-  max-height: 600px;
+  height: 400px;
+  
   overflow-y: auto;
   padding-right: 15px;
   scrollbar-width: thin;}
@@ -61,6 +53,40 @@ text-wrap: nowrap;}
     margin-top: 10px;
     flex-wrap: nowrap;
     float: left;}
+
+    .komentari {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.komentari ul {
+  list-style: none;
+  padding: 0;
+}
+
+.komentari li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.komentari textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+.komentari button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 .tags span{background-color: #eef0f2;
     padding: 4px 10px;
     border-radius: 12px;
@@ -87,6 +113,7 @@ text-wrap: nowrap;}
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  justify-content:center;
 }
 
 .levi {
@@ -95,6 +122,7 @@ text-wrap: nowrap;}
   flex-direction: column;
   gap: 10px;
   max-width: 50%;
+  overflow: auto;
 }
 
 .proizvod-slika {
@@ -117,11 +145,11 @@ text-wrap: nowrap;}
 /* DESNI DIO - TEKST + SCROLL */
 .desni {
   flex: 1;
-  max-height: 600px;
+ 
   overflow-y: auto;
   padding-right: 20px;
 }
-.cigla h1{text-align: center;}
+.cigla h1, .cigla h2{text-align: center;}
 .levi h2, .desni h2{text-align: center;}
 
 .cigla h2 {
@@ -134,22 +162,29 @@ text-wrap: nowrap;}
   font-size: 20px;
   margin-bottom: 10px;
 }
-
-/* CIJENA DOLJE DESNO */
-.cijena {
-  position: relative;
-  bottom: 20px;
-  right: 20px;
-  background-color: red;
-  color: white;
-  font-weight: 700;
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: 2px solid black;
-  font-size: 1rem;
+.ciglica {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* razmak između kolona */
 }
 
-/* FOOTER */
+.levat, .dzevad {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f8f8f8; /* da se vidi odvojenost */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+
+.levat {
+  background-color: #f0f0f0; /* opcionalno: da vidiš da radi */
+}
+
+.dzevad {
+  background-color: #e0e0e0; /* opcionalno */} 
+  /*FOOTER */
 .site-footer {
   width: 100%;
   background-color: #222;
@@ -161,4 +196,57 @@ text-wrap: nowrap;}
 .logo {
   max-width: 100px;
   max-height: 100px;
+}
+
+.aktivna-slika {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.thumbnail-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition: border 0.3s ease;
+}
+
+.thumbnail:hover {
+  border: 2px solid #888;
+}
+
+.thumbnail.aktivna {
+  border: 2px solid #007bff;
+}
+.dodaj-gumb, .slatkis {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2c7a7b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dodaj-gumb:hover {
+  background-color: hsl(134, 100%, 50%);
+}
+
+.kosarica img{max-height: fit-content;}
+
+.slatkis:hover{ background-color: #007bff;
 }

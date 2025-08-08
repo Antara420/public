@@ -1,6 +1,10 @@
+// firebase.js (ili kako god zoveš ovaj fajl)
+
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc } from "firebase/firestore"; // OVDJE je bitan import
 import { getAuth } from "firebase/auth";
+
+// Firebase konfiguracija
 const firebaseConfig = {
   apiKey: "AIzaSyCcsZmScxtiFVDC7AIG7fQPKxefgQgjs-c",
   authDomain: "scooterino-projekt-7b6c6.firebaseapp.com",
@@ -12,8 +16,27 @@ const firebaseConfig = {
   measurementId: "G-SWVTZMS4QJ"
 };
 
+// Inicijalizacija Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
-export { db };
-export const auth = getAuth(app);
+// Inicijalizacija servisa
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// Funkcija za dodavanje admin korisnika
+const addAdminUser = async (uid, email) => {
+  try {
+    await setDoc(doc(db, "users", uid), {
+      email: email,
+      role: "admin",
+      createdAt: new Date()
+    });
+
+    console.log("Admin user added successfully");
+  } catch (error) {
+    console.error("Error adding admin user: ", error);
+  }
+};
+
+// Exportaš što ti treba
+export { db, auth, addAdminUser };

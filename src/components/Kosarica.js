@@ -38,7 +38,7 @@ if (kosarica.length === 0) return (
           <div class="ciglica">
               <div class="kosara" >
                 
-                  <div class="leefi" >
+                  <div style={{overflow:'auto'}} class="leefi" >
                         <ul >
                           {kosarica.map((p, index) => (
                           <li key={index}>
@@ -52,8 +52,8 @@ if (kosarica.length === 0) return (
                         </ul>
                   </div>
                   <div class="desni22">
-                    <button onClick={isprazniKosaricu}>Isprazni košaricu</button><br/><br/><br/>
-                    <button onClick={() => setPrikaziFormu(true)}>Plaćanje</button>
+                    <button className='slatkis' onClick={isprazniKosaricu}>Isprazni košaricu</button><br/><br/><br/>
+                    <button className='slatkis' onClick={() => setPrikaziFormu(true)}>Plaćanje</button>
               
                     {prikaziFormu && (
                        <div className="modal">

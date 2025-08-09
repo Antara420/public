@@ -1,5 +1,5 @@
 .uredi-container {
-  max-width: 600px;
+  width: 1000px;
   margin: 40px auto;
   background: #fff;
   padding: 30px 40px;
@@ -25,25 +25,12 @@
 }
 
 .form-grid input,
-.form-grid textarea {
+.form-grid textarea
+{
   padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
 }
 
-.spremi-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-}
 
-.spremi-btn:hover {
-  background-color: #084fc7;
-}

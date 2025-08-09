@@ -27,7 +27,7 @@ const Navbar = () => {
           {user ? (
             <>
               <li className='nav-user'>Pozdrav, {user.displayName || user.email}</li>
-              <li><button className='logout-button' onClick={logout}>Odjavi se</button></li>
+              <li><button className='slatkis' onClick={logout}>Odjavi se</button></li>
             </>
           ) : (
             <li className='nav-contact'><Link to="/Prijava">Prijava</Link></li>

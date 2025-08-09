@@ -17,7 +17,7 @@ function Adresa(){
                                       <p>Tel: 044 420 420</p>
                                       <p>scooterino@biznis.com</p>
                             </div>
-                     </div>
+                         </div>
                    </div>
                </div>
             <div className='site-footer'>

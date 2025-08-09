@@ -1,54 +1,95 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { useAuth } from './AuthContext';
+import { Link } from 'react-router-dom';
 
 const AdminPanel = () => {
   const { user } = useAuth();
   const [artikli, setArtikli] = useState([]);
-  const [noviArtikl, setNoviArtikl] = useState({ name: '', cijena: '', tag: '', ukratko: '' });
+  const [noviArtikl, setNoviArtikl] = useState({
+    name: '',
+    cijena: '',
+    tag: '',
+    ukratko: ''
+  });
 
   const ADMIN_EMAIL = "anteo.augustincic@gmail.com";
   const isAdmin = !!user && user.email === ADMIN_EMAIL;
 
-
+  // Dohvati sve proizvode iz Firestore-a
   useEffect(() => {
     const fetchArtikli = async () => {
       const querySnapshot = await getDocs(collection(db, 'prodaja'));
-      const podaci = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const podaci = querySnapshot.docs.map(doc => ({
+        id: doc.id,              // Firestore ID
+        ...doc.data()
+      }));
       setArtikli(podaci);
     };
     fetchArtikli();
   }, []);
 
+  // Dodaj novi proizvod
   const dodajArtikl = async () => {
     await addDoc(collection(db, 'prodaja'), noviArtikl);
     alert('Artikl dodan!');
+    setNoviArtikl({ name: '', cijena: '', tag: '', ukratko: '' }); // očisti polja
   };
 
+  // Obriši proizvod
   const obrisiArtikl = async (id) => {
     await deleteDoc(doc(db, 'prodaja', id));
     setArtikli(prev => prev.filter(a => a.id !== id));
   };
 
-  if (!isAdmin) return <p style={{ color: 'red' }}>Nemaš pristup ovoj stranici.</p>;
+  // Ako nije admin – zabrani pristup
+  if (!isAdmin) {
+    return <p style={{ color: 'red' }}>Nemaš pristup ovoj stranici.</p>;
+  }
 
   return (
     <div className="page-layout">
-      <h2>Admin Panel</h2>
-      <h3>Dodaj novi artikl</h3>
-      <input placeholder="Ime" onChange={e => setNoviArtikl({ ...noviArtikl, name: e.target.value })} />
-      <input placeholder="Cijena" onChange={e => setNoviArtikl({ ...noviArtikl, cijena: e.target.value })} />
-      <input placeholder="Tag" onChange={e => setNoviArtikl({ ...noviArtikl, tag: e.target.value })} />
-      <input placeholder="Ukratko" onChange={e => setNoviArtikl({ ...noviArtikl, ukratko: e.target.value })} />
+      <h2 style={{color:'white', float:'center'}}>Admin Panel</h2>
+
+      <h3 style={{fontSize:'35px', color:'white'}}>➕ Dodaj novi artikl</h3>
+      <input placeholder= "Ime" value={noviArtikl.name} onChange={e => setNoviArtikl({ ...noviArtikl, name: e.target.value })}/>
+      <input placeholder="Cijena" value={noviArtikl.cijena} onChange={e => setNoviArtikl({ ...noviArtikl, cijena: e.target.value })}/>
+      <input placeholder="Tag" value={noviArtikl.tag} onChange={e => setNoviArtikl({ ...noviArtikl, tag: e.target.value })} />
+      <input placeholder="Motor" value={noviArtikl.motor} onChange={e => setNoviArtikl({ ...noviArtikl, motor: e.target.value })} />
+      <input placeholder="Ukratko" value={noviArtikl.ukratko} onChange={e => setNoviArtikl({ ...noviArtikl, ukratko: e.target.value })} />
+      <input placeholder="Baterija" value={noviArtikl.baterija} onChange={e => setNoviArtikl({ ...noviArtikl, baterija: e.target.value })} />
+      <input placeholder="Zaslon" value={noviArtikl.zaslon} onChange={e => setNoviArtikl({ ...noviArtikl, zaslon: e.target.value })} />
+      <input placeholder="Težina" value={noviArtikl.tezina} onChange={e => setNoviArtikl({ ...noviArtikl, tezina: e.target.value })} />
+      <input placeholder="Okvir" value={noviArtikl.okvir} onChange={e => setNoviArtikl({ ...noviArtikl, okvir: e.target.value })} />
+      <input placeholder="Pogon" value={noviArtikl.pogon} onChange={e => setNoviArtikl({ ...noviArtikl, pogon: e.target.value })} />
+      <input placeholder="Suspenzija" value={noviArtikl.suspenzija} onChange={e => setNoviArtikl({ ...noviArtikl, suspenzija: e.target.value })} />
+      <input placeholder="Kotači" value={noviArtikl.kotaci} onChange={e => setNoviArtikl({ ...noviArtikl, kotaci: e.target.value })} />
+      <input placeholder="Kočnice" value={noviArtikl.kocnice} onChange={e => setNoviArtikl({ ...noviArtikl, kocnice: e.target.value })} />
+      <input placeholder="Gume" value={noviArtikl.gume} onChange={e => setNoviArtikl({ ...noviArtikl, gume: e.target.value })} />
+      <input placeholder="Pribor" value={noviArtikl.pribor} onChange={e => setNoviArtikl({ ...noviArtikl, pribor: e.target.value })} />
+      <input placeholder="Sastav" value={noviArtikl.sastav} onChange={e => setNoviArtikl({ ...noviArtikl, sastav: e.target.value })} />
+      <input placeholder="Skladištenje" value={noviArtikl.skladistenje} onChange={e => setNoviArtikl({ ...noviArtikl, skladistenje: e.target.value })} />
+      <input placeholder="Ograničenje" value={noviArtikl.ogranicenje} onChange={e => setNoviArtikl({ ...noviArtikl, ogranicenje: e.target.value })} />
+      <input placeholder="slika" value={noviArtikl.slika} onChange={e => setNoviArtikl({ ...noviArtikl, slika: e.target.value })} />
+      <input placeholder="Slike" value={noviArtikl.slike} onChange={e => setNoviArtikl({ ...noviArtikl, slike: e.target.value })} />
+      <input placeholder="Model" value={noviArtikl.model} onChange={e => setNoviArtikl({ ...noviArtikl, model: e.target.value })} />
+
+
+
+
+
       <button onClick={dodajArtikl}>Dodaj</button>
 
-      <h3>Postojeći artikli</h3>
-      <ul>
+      <h3 style={{color:'white', fontSize:'35px', }}>📦 Postojeći artikli</h3>
+      <ul style={{color:'white', fontSize:'25px', }}>  
         {artikli.map((a) => (
           <li key={a.id}>
-            {a.name} – {a.cijena} €
-            <button onClick={() => obrisiArtikl(a.id)}>Obriši</button>
+            <strong>{a.name}</strong> – {a.cijena} €
+            <button onClick={() => obrisiArtikl(a.id)}>🗑 Obriši</button>
+            <Link to={`/admin/uredi/${a.id}`}>
+              <button>✏️ Uredi</button>
+            </Link>
           </li>
         ))}
       </ul>

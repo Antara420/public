@@ -79,11 +79,11 @@ background-size: cover;
     background-color: white;
     box-shadow: 0 4px 12px rgba(18, 41, 216, 0.658);
     padding: 20px;
-    transition: transform 0.3 ease;
+    transition: transform 0.3s ease-in-out;
     opacity: 93%;}
 .card:hover{cursor: pointer;
     transform: translateY(-5px);
-    transition: transform 0.15s ease-in-out;
+   
     box-shadow: 0 4px 12px rgba(254, 17, 33, 0.658);}
 .tags{display: flex;
     gap: 8px;

@@ -2,8 +2,11 @@ import './proizvod.css';
 import { useState } from 'react';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
 
 function Registracija() {
+  const navigate = useNavigate();
   const [ime, setIme] = useState('');
   const [email, setEmail] = useState('');
   const [lozinka, setLozinka] = useState('');
@@ -29,6 +32,9 @@ function Registracija() {
       setEmail('');
       setLozinka('');
       setPotvrdaLozinke('');
+      setTimeout(()=>{
+        navigate('/');
+      },1000);
     } catch (err) {
       setError(err.message);
     }

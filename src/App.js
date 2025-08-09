@@ -12,6 +12,7 @@ import Prijava from "./components/Prijava";
 import Registracija from "./components/Registracija";
 import Kosarica from "./components/Kosarica";
 import AdminPanel from "./components/AdminPanel";
+import UrediProizvod from "./components/UrediProizvod";
 
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import { CartProvider } from "./components/CartContext";
@@ -77,6 +78,7 @@ function AppContent() {
         <Route path="/prijava" element={<Prijava />} />
         <Route path="/registracija" element={<Registracija />} />
         <Route path="/proizvod/:id" element={<ProizvodDetalji />} />
+        <Route path="/admin/uredi/:id" element={<UrediProizvod />} />
         {isAdmin && <Route path="/admin" element={<AdminPanel />} />}
       </Routes>
     </div>

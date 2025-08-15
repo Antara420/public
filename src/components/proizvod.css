@@ -52,7 +52,7 @@ height: 580px;}
     gap: 8px;
     margin-top: 10px;
     flex-wrap: nowrap;
-    float: left;}
+    }
 
     .komentari {
   margin-top: 40px;
@@ -200,7 +200,7 @@ height: 580px;}
 
 .aktivna-slika {
   width: 100%;
-  max-height: 400px;
+  height: 500px;
   object-fit: contain;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -227,7 +227,7 @@ height: 580px;}
   border: 2px solid #888;
 }
 
-.thumbnail.aktivna {
+.thumbnail.aktivna-slika {
   border: 2px solid #007bff;
 }
 .dodaj-gumb, .slatkis {

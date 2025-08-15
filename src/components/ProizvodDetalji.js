@@ -6,6 +6,7 @@ import '../App.css';
 import { useAuth } from '../components/AuthContext';
 import { addDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { useCart } from '../components/CartContext';
+import BackButton from './ProslaStranica';
 
 const ProizvodDetalji = () => {
   const { id } = useParams();
@@ -82,6 +83,7 @@ const handleKomentarSubmit = async (e) => {
         <div className='cigla'>
       
         <div className='levi'>
+          <BackButton/>
            <h2>{vozilo.name}</h2>
 
   {aktivnaSlika && (
@@ -100,6 +102,7 @@ const handleKomentarSubmit = async (e) => {
 </div>
 
         <div className='desni'>
+          <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo,  id: vozilo.id })}>Dodaj u košaricu – {vozilo.cijena},00€</button> 
             {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
             {vozilo.motor && (<p><strong>Motor:</strong> {vozilo.motor}</p>)}
             {vozilo.baterija && (<p><strong>Baterija:</strong> {vozilo.baterija}</p>)}
@@ -115,7 +118,7 @@ const handleKomentarSubmit = async (e) => {
             {vozilo.gume && (<p><strong>Gume:</strong> {vozilo.gume}</p>)}
             {vozilo.kocnice && (<p><strong>Kočnice:</strong> {vozilo.kocnice}</p>)}
         </div>
-         <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo,  id: vozilo.id })}>Dodaj u košaricu – {vozilo.cijena},00€</button>   
+           
       </div>
 
       <div className='komentari'>

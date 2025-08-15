@@ -45,7 +45,7 @@ function Prijava() {
 
       <div className='cigla-wrap'>
         <div className='cigla'>
-          <div className='levi'>
+          <div className='levi' style={{alignItems:'center'}}>
             <h2>Prijavi se</h2>
             <form onSubmit={handleLogin}>
               <label htmlFor='email'><strong>Email:</strong></label><br />
@@ -71,7 +71,7 @@ function Prijava() {
                 required/>
               <br />
 
-              <button className='slatkis' type='submit'>Prijava</button>
+              <button className='slatkis' type='submit'>Prijava</button> <br/>
               <button type="button" onClick={handleResetLozinke} className="slatkis">Zaboravljena lozinka?</button>
 
               {error && <p className="error">{error}</p>}

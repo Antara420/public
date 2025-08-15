@@ -89,7 +89,7 @@ background-size: cover;
     gap: 8px;
     margin-top: 10px;
     flex-wrap: nowrap;
-    float: left;}
+    }
 .tags span{background-color: #eef0f2;
     padding: 4px 10px;
     border-radius: 12px;

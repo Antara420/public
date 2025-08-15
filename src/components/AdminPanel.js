@@ -4,6 +4,8 @@ import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { useAuth } from './AuthContext';
 import { Link } from 'react-router-dom';
 import './uredi.css';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 
 const AdminPanel = () => {
   const { user } = useAuth();
@@ -17,6 +19,8 @@ const AdminPanel = () => {
 
   const ADMIN_EMAIL = "anteo.augustincic@gmail.com";
   const isAdmin = !!user && user.email === ADMIN_EMAIL;
+
+  
 
   // Dohvati sve proizvode iz Firestore-a
   useEffect(() => {
@@ -43,6 +47,45 @@ const AdminPanel = () => {
     await deleteDoc(doc(db, 'prodaja', id));
     setArtikli(prev => prev.filter(a => a.id !== id));
   };
+
+  //uredi sliku
+  const handleFileUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const storage = getStorage(); // koristi defaultni storage iz firebase.js
+  const storageRef = ref(storage, `slike_proizvoda/${file.name}`);
+
+  try {
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    setNoviArtikl(prev => ({ ...prev, slika: url }));
+    alert("Slika uspješno učitana!");
+  } catch (error) {
+    console.error("Greška prilikom uploada slike:", error);
+    alert("Upload nije uspio.");
+  }
+};
+//uredi slike
+const handleMultipleFileUpload = async (e) => {
+  const files = e.target.files;
+  const urls = [];
+
+  const storage = getStorage();
+
+  for (const file of files) {
+    const storageRef = ref(storage, `slike_proizvoda/${file.name}`);
+    try {
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      urls.push(url);
+    } catch (error) {
+      console.error("Greška kod slike:", file.name, error);
+    }
+  }
+
+  setNoviArtikl(prev => ({ ...prev, slike: urls }));
+};
 
   // Ako nije admin – zabrani pristup
   if (!isAdmin) {
@@ -73,10 +116,14 @@ const AdminPanel = () => {
           <input placeholder="Sastav" value={noviArtikl.sastav} onChange={e => setNoviArtikl({ ...noviArtikl, sastav: e.target.value })} />
           <input placeholder="Skladištenje" value={noviArtikl.skladistenje} onChange={e => setNoviArtikl({ ...noviArtikl, skladistenje: e.target.value })} />
           <input placeholder="Ograničenje" value={noviArtikl.ogranicenje} onChange={e => setNoviArtikl({ ...noviArtikl, ogranicenje: e.target.value })} />
-          <input placeholder="slika" value={noviArtikl.slika} onChange={e => setNoviArtikl({ ...noviArtikl, slika: e.target.value })} />
-          <input placeholder="Slike (linkove odvajati zarezom)" value={noviArtikl.slike} onChange={e => setNoviArtikl({ ...noviArtikl, slike: e.target.value })} />
+          <label>Odaberi sliku proizvoda:</label>
+          <input type="file" accept="image/*" onChange={handleFileUpload} />
+          <label>Odaberi slike proizvoda:</label>
+          <input type="file" accept="image/*" multiple onChange={handleMultipleFileUpload} />
           <input placeholder="Model" value={noviArtikl.model} onChange={e => setNoviArtikl({ ...noviArtikl, model: e.target.value })} />
-          <button className='slatkis' onClick={dodajArtikl}>Dodaj</button>
+          <input placeholder= "Količina" value={noviArtikl.kolicina} onChange={e => setNoviArtikl({ ...noviArtikl, kolicina: e.target.value })}/>
+
+          <button className='slatkis' onClick={dodajArtikl}>Dodaj</button> 
           <h3 style={{ fontSize:'35px', }}>📦 Postojeći artikli</h3>
           <ul style={{ fontSize:'25px', }}>
             {artikli.map((a) => (

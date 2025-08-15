@@ -15,7 +15,13 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
           <h1>Vozila na prodaju</h1><br/>
 
           <div className="filters">
-            <button className={selectedTag === "svi" ? "active" : ""} onClick={() => setSelectedTag("svi")}>Sve</button>
+            <button className={
+              selectedTag === "svi" 
+              ? "active" : ""} onClick={() => 
+              setSelectedTag("svi")
+              }>
+                Sve
+                </button>
             <button className={selectedTag === "eRomobil" ? "active" : ""} onClick={() => setSelectedTag("eRomobil")}>E-romobil</button>
             <button className={selectedTag === "eBajk" ? "active" : ""} onClick={() => setSelectedTag("eBajk")}>E-bike</button>
             <button className={selectedTag === "eScooter" ? "active" : ""} onClick={() => setSelectedTag("eScooter")}>E-skuter</button>
@@ -39,16 +45,21 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
 
                 <div className='card-right'>
                   <h2>{vozilo.name}</h2>
+                  <div style={{justifyContent:'space-between', display:'flex', alignItems:'center', flexWrap:'wrap'}}>
+                    <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo, id: vozilo.id })}>
+                      Dodaj u košaricu – {vozilo.cijena},00 €
+                    </button>
+                    <Link to={`/proizvod/${vozilo.id}`} className='more-btn'>Više informacija</Link>
+                  </div>
                   {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
                   {vozilo.pribor && (<p><strong>Pribor:</strong> {vozilo.pribor}</p>)}
                   <p className='tags'><strong>Tag:</strong> <span>{vozilo.tag}</span></p>
-                  <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo, id: vozilo.id })}>
-                    Dodaj u košaricu – {vozilo.cijena},00 €
-                  </button>
-                  <Link to={`/proizvod/${vozilo.id}`} className='more-btn'>Više informacija</Link>
+                  
 
                   {isAdmin && (
-                    <Link to={`/admin/uredi/${vozilo.id}`} className="edit-btn">Uredi</Link>
+                    <div style={{justifyContent:'space-between', display:'flex', alignItems:'center'}}>
+                      <Link to={`/admin/uredi/${vozilo.id}`} className="slatkis" >Uredi</Link>
+                    </div>
                   )}
                 </div>
               </div>

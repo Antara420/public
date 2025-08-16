@@ -33,3 +33,50 @@
   font-size: 16px;
 }
 
+@media (max-width: 1024px) {
+  .uredi-container {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .uredi-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .form-grid {
+    gap: 12px;
+  }
+
+  .form-grid input,
+  .form-grid textarea {
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+
+  .uredi-container h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-grid {
+    gap: 10px;
+  }
+
+  .form-grid label {
+    font-size: 14px;
+  }
+
+  .form-grid input,
+  .form-grid textarea {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .uredi-container h2 {
+    font-size: 18px;
+  }
+}

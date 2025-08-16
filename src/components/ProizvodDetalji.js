@@ -86,10 +86,7 @@ const handleKomentarSubmit = async (e) => {
         <div className='levi'>
           <BackButton/>
            <h2>{vozilo.name}</h2>
-
- {aktivnaSlika && (
-  <img src={aktivnaSlika} alt="Aktivna slika" className="aktivna-slika" />
-)}
+           {aktivnaSlika && (<img src={aktivnaSlika} alt="Aktivna slika" className="aktivna-slika" />)}
 
 <div className="thumbnail-container">
   {vozilo.imageData?.dodatne &&

@@ -183,3 +183,190 @@ html, body {
 .card-right p {
   margin: 5px 0;
 }
+
+/* === RESPONSIVE STYLES === */
+
+@media(min-width:1024px){
+  .ciglica {
+    margin: 0 auto;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: space-between;
+  }
+  
+  .ciglica .lijevi-blok,
+  .ciglica .desni-blok {
+    width: 100%;
+    margin: 150px;
+  }
+}
+/* TABLETI (od 768px naviše) */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ciglica {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ciglica .lijevi-blok,
+  .ciglica .desni-blok {
+    width: 100%;
+    margin: 50px;
+  }
+  .stranica {
+    padding: 20px;
+  }
+
+  .card-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 450px;
+  overflow: auto;
+}
+  .card-left img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .card-right {
+    height: auto;
+  }
+  .more-btn{margin: 2px auto;}
+}
+  
+
+/* MOBITELI (do 767px) */
+@media (max-width: 767px) {
+  .cigla-wrap {
+    max-width: 95vw;
+  }
+
+  .stranica {
+    padding: 15px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-wrap: wrap;
+  }
+
+  .card-left img,
+  .card-content img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-info,
+  .card-right {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    overflow: visible;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters button {
+    width: 100%;
+  }
+
+  .main-content h1,
+  .stranica h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .more-btn,
+  .cijena {
+    text-align: center;
+    display: block;
+    margin: 5px auto;
+  }
+
+  .tags {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+/* do 480px*/
+@media (max-width: 480px) {
+  .cigla-wrap {
+    max-width: 95vw;
+  }
+
+  .stranica {
+    padding: 10 px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-wrap: wrap;
+  }
+
+  .card-left img,
+  .card-content img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-info,
+  .card-right {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    overflow: visible;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters button {
+    width: 100%;
+  }
+
+  .main-content h1,
+  .stranica h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .more-btn,
+  .cijena {
+    text-align: center;
+    display: block;
+    margin: 5px auto;
+  }
+
+  .tags {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cigla-wrap{
+    height: 90%;
+    width: 90%;
+    margin: 5px auto;
+  }
+}

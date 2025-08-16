@@ -50,7 +50,7 @@ if (kosarica.length === 0) return (
                         <ul >
                           {kosarica.map((p, index) => (
                           <li key={index}>
-                          <img src={p.slika} alt={p.name} />
+                          <img src={p.imageData?.dodatne?.[0] || 'fallback-slika.jpg'} alt={p.name} style={{ width: '100px', height: 'auto', objectFit: 'cover' }}/>
                           <div className="item-info">
                           <strong>{p.name}</strong>
                           <span>{p.cijena} €</span>
@@ -62,7 +62,7 @@ if (kosarica.length === 0) return (
                           </div>
 
                           <div className="buttons">
-                          <button onClick={() => ukloniIzKosarice(p.id)}>Ukloni</button>
+                          <button style={{margin:'10px'}} onClick={() => ukloniIzKosarice(p.id)}>Ukloni</button>
                           <Link to={`/proizvod/${p.id}`} className="more-btn">Više informacija</Link>
                           </div>
                           </div>

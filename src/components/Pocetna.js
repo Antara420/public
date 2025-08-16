@@ -38,9 +38,7 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
             {prodaja.map((vozilo) => (
               <div key={vozilo.id} className='card'>
                 <div className='card-left'>
-                  {vozilo.slika && (
-                    <img src={vozilo.slika} alt={vozilo.name || "Slika proizvoda"} />
-                  )}
+                  {vozilo.imageData?.glavna && (<img src={vozilo.imageData.glavna} alt="Glavna slika" style={{ width: '200px', objectFit: 'cover' }} />)}
                 </div>
 
                 <div className='card-right'>

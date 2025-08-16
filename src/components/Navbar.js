@@ -26,7 +26,7 @@ const Navbar = () => {
 
           {user ? (
             <>
-              <li className='nav-user'>Pozdrav, {user.displayName || user.email}</li>
+              <li className='nav-user'>Pozdrav, {user.name || user.email}</li>
               <li><button className='slatkis' onClick={logout}>Odjavi se</button></li>
             </>
           ) : (

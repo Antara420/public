@@ -75,6 +75,7 @@ const handleKomentarSubmit = async (e) => {
 };
 
 
+
   if (loading) return <p>Učitavanje...</p>;
   if (!vozilo) return <p>Proizvod nije pronađen.</p>;
 
@@ -86,19 +87,23 @@ const handleKomentarSubmit = async (e) => {
           <BackButton/>
            <h2>{vozilo.name}</h2>
 
-  {aktivnaSlika && (
-    <img src={aktivnaSlika} alt="Aktivna slika" className="aktivna-slika" />)}
-    <div className="thumbnail-container">
-    {vozilo.slike &&
-      Array.isArray(vozilo.slike) &&
-      vozilo.slike.map((url, index) => (
-        <img
-          key={index}
-          src={url}
-          alt={`Thumbnail ${index + 1}`}
-          className={`thumbnail ${aktivnaSlika === url ? 'aktivna' : ''}`}
-          onClick={() => setAktivnaSlika(url)}  />  ))} 
-        </div>
+ {aktivnaSlika && (
+  <img src={aktivnaSlika} alt="Aktivna slika" className="aktivna-slika" />
+)}
+
+<div className="thumbnail-container">
+  {vozilo.imageData?.dodatne &&
+    Array.isArray(vozilo.imageData.dodatne) &&
+    vozilo.imageData.dodatne.map((url, index) => (
+      <img
+        key={index}
+        src={url}
+        alt={`Thumbnail ${index + 1}`}
+        className={`thumbnail ${aktivnaSlika === url ? 'aktivna' : ''}`}
+        onClick={() => setAktivnaSlika(url)}
+      />
+    ))}
+</div>
 </div>
 
         <div className='desni'>

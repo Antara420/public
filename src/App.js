@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { collection, query, getDocs, getDoc, where, doc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  onSnapshot,
+  where,
+  doc,
+  getDoc
+} from "firebase/firestore";
 import { db } from "./firebase";
+
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -24,6 +32,7 @@ function AppContent() {
 
   const { user } = useAuth();
 
+  // Provjera admin prava
   useEffect(() => {
     const provjeriAdmina = async () => {
       if (!user) return;
@@ -36,33 +45,28 @@ function AppContent() {
     provjeriAdmina();
   }, [user]);
 
+  // Real-time dohvaćanje artikala
   useEffect(() => {
-    const fetchData = async () => {
-      let q = selectedTag === "svi"
-        ? query(collection(db, "prodaja"))
-        : query(collection(db, "prodaja"), where("tag", "==", selectedTag));
+    const q = selectedTag === "svi"
+      ? collection(db, "prodaja")
+      : query(collection(db, "prodaja"), where("tag", "==", selectedTag));
 
-      const snapShot = await getDocs(q);
-      const vozila = [];
-
-      for (const docSnap of snapShot.docs) {
-        const voziloData = docSnap.data();
-        vozila.push({
-          id: docSnap.id,
-          name: voziloData.name || "Nepoznati proizvod",
-          ukratko: voziloData.ukratko || "",
-          cijena: voziloData.cijena || "",
-          tag: voziloData.tag || "",
-          slike: voziloData.slike || [],
-          slika: voziloData.slika || "",
-          ...voziloData
-        });
-      }
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const vozila = snapshot.docs.map(docSnap => ({
+        id: docSnap.id,
+        name: docSnap.data().name || "Nepoznati proizvod",
+        ukratko: docSnap.data().ukratko || "",
+        cijena: docSnap.data().cijena || "",
+        tag: docSnap.data().tag || "",
+        slike: docSnap.data().slike || [],
+        slika: docSnap.data().slika || "",
+        ...docSnap.data()
+      }));
 
       setProdaja(vozila);
-    };
+    });
 
-    fetchData();
+    return () => unsubscribe(); // cleanup listener
   }, [selectedTag]);
 
   return (

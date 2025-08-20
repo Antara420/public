@@ -12,9 +12,23 @@
   
 }
 
-.leefi{float: left;
+.leefi {
+  float: none;
+  margin: 0 auto;
   height: 500px;
-width: 400px;}
+  width: 900px;
+  display: block;
+  text-align: center;
+}
+.leefi img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
 
 .kosara .desni {
   flex: 1;
@@ -145,10 +159,13 @@ width: 400px;}
   text-align: center;
 }
 
-.ciglica{
+.ciglica {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
   background-color: #ddd;
-  text-align: center;
-  align-items: center;
+  padding: 20px;
 }
 .cigla-wrap h1{color: white;}
 
@@ -174,19 +191,25 @@ width: 400px;}
   text-align: center;
 }
 
-.lijevi-blok{
-  height: '550px';
-  width: '350px';
-  padding: '20px';
-  gap: '50px';
-  font-size: '20px';}
-.desni-blok{
-  height: '550px';
-  width: '350px'; 
-  padding: '20px'; 
-  float:'right'; 
-  margin-left:'480px';
- font-size:'20px'; }
+.lijevi-blok {
+  height: 350px;
+  width: 350px;
+  padding: 20px;
+  gap: 50px;
+  font-size: 20px;
+}
+.desni-blok {
+  height: 350px;
+  width: 350px;
+  padding: 20px;
+  font-size: 20px;
+}
+.lijevi-blok, .desni-blok {
+  flex-grow: 1;        /* Omogući da zauzmu sav dostupan prostor */
+  min-width: 280px;    /* Minimalna širina radi responzivnosti */
+  padding: 20px;
+  font-size: 20px;
+}
 
 @media (max-width: 1024px) {
   .kosara {

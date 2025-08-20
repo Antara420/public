@@ -27,7 +27,7 @@ const AdminPanel = () => {
     const fetchArtikli = async () => {
       const querySnapshot = await getDocs(collection(db, 'prodaja'));
       const podaci = querySnapshot.docs.map(doc => ({
-        id: doc.id,              // Firestore ID
+        id: doc.id,
         ...doc.data()
       }));
       setArtikli(podaci);
@@ -53,7 +53,7 @@ const AdminPanel = () => {
   const file = e.target.files[0];
   if (!file) return;
 
-  const storage = getStorage(); // koristi defaultni storage iz firebase.js
+  const storage = getStorage(); 
   const storageRef = ref(storage, `slike_proizvoda/${file.name}`);
 
   try {
@@ -94,7 +94,7 @@ const handleMultipleFileUpload = async (e) => {
 
   return (
     <div className="page-layout">
-      <div class="uredi-container">
+      <div class="uredi-container" style={{maxWidth:'800px'}}>
         <h2 style={{ float:'center'}}>Dodavanje proizvoda:</h2>
         <div class="form-grid">
           <h3 style={{fontSize:'35px', color:'white'}}>➕ Dodaj novi artikl</h3>
@@ -129,7 +129,7 @@ const handleMultipleFileUpload = async (e) => {
             {artikli.map((a) => (
               <li key={a.id}>
                 <strong>{a.name}</strong> – {a.cijena} €
-                <button style={{float:'right'}} className='slatkis' onClick={() => obrisiArtikl(a.id)}>🗑 Obriši</button>
+                <button style={{margin:'3px'}} className='slatkis' onClick={() => obrisiArtikl(a.id)}>🗑 Obriši</button>
                 <Link to={`/admin/uredi/${a.id}`}>
                   <button className='slatkis'>✏️ Uredi</button>
                 </Link>

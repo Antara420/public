@@ -17,6 +17,8 @@ const ProizvodDetalji = () => {
   const [noviKomentar, setNoviKomentar] = useState('');
   const [aktivnaSlika, setAktivnaSlika] = useState(null);
 
+  const { dodajUKosaricu } = useCart();
+
   useEffect(() => {
     const fetchVozilo = async () => {
       try {
@@ -55,7 +57,6 @@ const ProizvodDetalji = () => {
   return () => unsubscribe();
 }, [id]);
 
-const {dodajUKosaricu}=useCart();
 
 const handleKomentarSubmit = async (e) => {
   e.preventDefault();
@@ -73,7 +74,14 @@ const handleKomentarSubmit = async (e) => {
     console.error("Greška pri slanju komentara:", err);
   }
 };
+  const handleDodajUKosaricu = () => {
+    if (!user) {
+      alert("Morate biti prijavljeni da biste dodali proizvod u košaricu.");
+      return;
+    }
 
+    dodajUKosaricu({ ...vozilo, id });
+  };
 
 
   if (loading) return <p>Učitavanje...</p>;
@@ -104,21 +112,25 @@ const handleKomentarSubmit = async (e) => {
 </div>
 
         <div className='desni'>
-          <button className='dodaj-gumb' onClick={() => dodajUKosaricu({ ...vozilo,  id: vozilo.id })}>Dodaj u košaricu – {vozilo.cijena},00€</button> 
-            {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
-            {vozilo.motor && (<p><strong>Motor:</strong> {vozilo.motor}</p>)}
-            {vozilo.baterija && (<p><strong>Baterija:</strong> {vozilo.baterija}</p>)}
-            {vozilo.zaslon && (<p><strong>Ekran:</strong> {vozilo.zaslon}</p>)}
-            {vozilo.tezina && (<p><strong>Težina:</strong> {vozilo.tezina}</p>)}
-            {vozilo.sastav && (<p><strong>Sastav okvira:</strong> {vozilo.sastav}</p>)}
-            {vozilo.pogon && (<p><strong>Pogon:</strong> {vozilo.pogon}</p>)}
-            {vozilo.suspenzija && (<p><strong>Suspenzija:</strong> {vozilo.suspenzija}</p>)}
-            {vozilo.kotaci && (<p><strong>Kotači:</strong> {vozilo.kotaci}</p>)}
-            {vozilo.pribor && (<p><strong>Pribor:</strong> {vozilo.pribor}</p>)}
-            {vozilo.skladistenje && (<p><strong>Skladištenje:</strong> {vozilo.skladistenje}</p>)}
-            {vozilo.ogranicenje && (<p><strong>Ograničenje:</strong> {vozilo.ogranicenje}</p>)}
-            {vozilo.gume && (<p><strong>Gume:</strong> {vozilo.gume}</p>)}
-            {vozilo.kocnice && (<p><strong>Kočnice:</strong> {vozilo.kocnice}</p>)}
+            <div class="detalji-scroll">
+              {vozilo.ukratko && (<p><strong>Ukratko:</strong> {vozilo.ukratko}</p>)}
+              {vozilo.motor && (<p><strong>Motor:</strong> {vozilo.motor}</p>)}
+              {vozilo.baterija && (<p><strong>Baterija:</strong> {vozilo.baterija}</p>)}
+              {vozilo.zaslon && (<p><strong>Ekran:</strong> {vozilo.zaslon}</p>)}
+              {vozilo.tezina && (<p><strong>Težina:</strong> {vozilo.tezina}</p>)}
+              {vozilo.sastav && (<p><strong>Sastav okvira:</strong> {vozilo.sastav}</p>)}
+              {vozilo.pogon && (<p><strong>Pogon:</strong> {vozilo.pogon}</p>)}
+              {vozilo.suspenzija && (<p><strong>Suspenzija:</strong> {vozilo.suspenzija}</p>)}
+              {vozilo.kotaci && (<p><strong>Kotači:</strong> {vozilo.kotaci}</p>)}
+              {vozilo.pribor && (<p><strong>Pribor:</strong> {vozilo.pribor}</p>)}
+              {vozilo.skladistenje && (<p><strong>Skladištenje:</strong> {vozilo.skladistenje}</p>)}
+              {vozilo.ogranicenje && (<p><strong>Ograničenje:</strong> {vozilo.ogranicenje}</p>)}
+              {vozilo.gume && (<p><strong>Gume:</strong> {vozilo.gume}</p>)}
+              {vozilo.kocnice && (<p><strong>Kočnice:</strong> {vozilo.kocnice}</p>)}
+            </div>
+              <div className="fixed-gumb-wrap" style={{ display: 'flex', justifyContent: 'center' }}>
+              <button className='dodaj-gumb' onClick={() => handleDodajUKosaricu({ ...vozilo, id: vozilo.id })}>Dodaj u košaricu – {vozilo.cijena},00€ </button>
+            </div>
         </div>
            
       </div>

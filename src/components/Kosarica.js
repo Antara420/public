@@ -11,6 +11,7 @@ const Kosarica = () => {
   const { kosarica, ukloniIzKosarice, isprazniKosaricu, povecajKolicinu, smanjiKolicinu } = useCart();
   const [prikaziFormu, setPrikaziFormu] = useState(false);
   const ukupno = kosarica.reduce((sum, item) => sum + item.cijena * item.kolicina, 0);
+  const MAX_KOLICINA = 5;
 
   
 
@@ -50,7 +51,7 @@ if (kosarica.length === 0) return (
                         <ul >
                           {kosarica.map((p, index) => (
                           <li key={index}>
-                          <img src={p.imageData?.dodatne?.[0] || 'fallback-slika.jpg'} alt={p.name} style={{ width: '100px', height: 'auto', objectFit: 'cover' }}/>
+                          <img src={p.imageData?.dodatne?.[0] || 'fallback-slika.jpg'} alt={p.name}/>
                           <div className="item-info">
                           <strong>{p.name}</strong>
                           <span>{p.cijena} €</span>
@@ -58,7 +59,7 @@ if (kosarica.length === 0) return (
                           <div className="quantity-controls">
                           <button onClick={() => smanjiKolicinu(p.id)}>-</button>
                           <span>{p.kolicina}</span>
-                          <button onClick={() => povecajKolicinu(p.id)}>+</button>
+                          <button  onClick={() => povecajKolicinu(p.id)} disabled={p.kolicina >= MAX_KOLICINA}>+</button>
                           </div>
 
                           <div className="buttons">
@@ -71,6 +72,7 @@ if (kosarica.length === 0) return (
                         </ul>
                   </div>
                   <div class="desni22">
+                    <BackButton/><br/><br/> <br/>
                     <button className='slatkis' onClick={isprazniKosaricu}>Isprazni košaricu</button><br/><br/><br/>
                     <button className='slatkis' onClick={() => setPrikaziFormu(true)}>Plaćanje</button>
               
@@ -98,7 +100,7 @@ if (kosarica.length === 0) return (
                                <option value="kartica">Kartica</option>
                                <option value="pouzeće">Pouzeće</option>
                              </select>
-              
+                            
                             <button type="submit">Potvrdi plaćanje</button>
                            </form>
                   </div>

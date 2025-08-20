@@ -15,7 +15,7 @@ background-size: cover;
   background-position: center;
    background-attachment: fixed;
   height: 100vh;
-  width: 100vw;}
+  width: 95vw;}
 
 /*glavni grid layout*/
 .page-layout{display: flex;
@@ -115,7 +115,32 @@ background-size: cover;
 
 
 
+
+
+
+.aktivna-slika {
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.fixed-gumb-wrap {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 10px 0;
+  z-index: 10;
+}
+
+.detalji-scroll {
+  overflow-y: auto;
+  max-height: 400px; /* ili koliko ti odgovara */
+  padding-right: 10px;
+}
 /*sitnice*/
+.quantity-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 h3{position: relative;
     text-align: center;
     padding: 2px;}
@@ -171,18 +196,62 @@ html, body {
 }
 
 .card-right {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  min-width: 0;
   height: 230px;
-  overflow: auto;
+  overflow: hidden;
 }
 
-.card-right h2 {
-  margin-top: 0;
+.card-fixed-header {
+  flex-shrink: 0;
+  background: white;
+  z-index: 1;
 }
 
-.card-right p {
-  margin: 5px 0;
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  gap: 10px;
 }
+
+
+.aktivna-slika {
+  max-height: 400px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.card-scrollable-body {
+  overflow-y: auto;
+  padding-right: 5px;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  font-weight: bold;
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
 
 /* === RESPONSIVE STYLES === */
 
@@ -302,6 +371,17 @@ html, body {
     justify-content: center;
     flex-wrap: wrap;
   }
+  
+  .card-right {
+    height: auto;
+    overflow: visible;
+  }
+
+  .card-scrollable-body {
+    max-height: none;
+    overflow: visible;
+  }
+
 }
 /* do 480px*/
 @media (max-width: 480px) {

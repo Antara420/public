@@ -44,8 +44,8 @@ function Prijava() {
       <h1 style={{ color: 'white' }}>Pronađite nas</h1>
 
       <div className='cigla-wrap'>
-        <div className='cigla'>
-          <div className='levi' style={{alignItems:'center'}}>
+        <div className='cigla' style={{height:'450px'}}>
+          <div className='levi' style={{alignItems:'center', marginLeft:'30px'}}>
             <h2>Prijavi se</h2>
             <form onSubmit={handleLogin}>
               <label htmlFor='email'><strong>Email:</strong></label><br />
@@ -71,8 +71,8 @@ function Prijava() {
                 required/>
               <br />
 
-              <button className='slatkis' type='submit'>Prijava</button> <br/>
-              <button type="button" onClick={handleResetLozinke} className="slatkis">Zaboravljena lozinka?</button>
+              <button className='slatkis' style={{margin:'5px'}} type='submit'>Prijava</button> <br/>
+              <button type="button" style={{margin:'5px'}} onClick={handleResetLozinke} className="slatkis">Zaboravljena lozinka?</button>
 
               {error && <p className="error">{error}</p>}
             </form>
@@ -82,7 +82,7 @@ function Prijava() {
             <h2>Nemaš račun?</h2>
             <h3>Registriraj se</h3>
             <Link to="/registracija" >
-              <button style={{ marginLeft: '225px' }} className='slatkis'>Registracija</button>
+              <button style={{ marginLeft: '185px', marginTop:'5px'}} className='slatkis'>Registracija</button>
             </Link>
           </div>
         </div>

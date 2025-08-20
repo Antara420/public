@@ -10,7 +10,9 @@ const BackButton = () => {
   };
 
   return (
-    <button className='slatkis' onClick={handleBack}>Prošla stranica</button>
+     <button className='slatkis' onClick={handleBack}>
+  ←&nbsp;Prošla stranica
+</button>
   );
 };
 

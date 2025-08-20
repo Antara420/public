@@ -7,7 +7,7 @@ function Adresa(){
            <div className='main-content'>       
                 <div className='cigla-wrap'>
                     <div className='kosara'>
-                        <div className="ciglica">
+                        <div className="ciglica" style={{height:'480px'}}>
                             <div className='lijevi-blok' >
                                       <h2 style={{color:'black'}}>Adresa</h2>
                                       <p>Pronađite nas nas adresi <br/> Rimska 15, 44000 Sisak <br/> Radno vrijeme: Pon - Pet <br/> 08:15 - 16:00 </p>

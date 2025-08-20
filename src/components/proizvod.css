@@ -1,9 +1,4 @@
-.filters{display: flex;
-    z-index: 1;
-    gap: 15px;
-    margin: 10px;
-    flex-wrap: wrap;
-    margin: 20px;}
+
 
 .filters button{padding: 10px 16px;
     border-radius: 20px;

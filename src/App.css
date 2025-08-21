@@ -13,7 +13,7 @@ background-size: cover;
   background-position: center;
    background-attachment: fixed;
   height: 100vh;
-  width: 95vw;}
+  width: 100%;}
 /*glavni grid layout*/
 .page-layout{display: flex;
   flex-direction: column;
@@ -157,7 +157,7 @@ html, body {
   flex: 1;
   min-width: 0;
   height: 230px;
-  overflow: hidden; }
+  overflow: unset; }
 .card-fixed-header {
   flex-shrink: 0;
   background: white;
@@ -208,7 +208,7 @@ html, body {
     width: 100%;
     margin: 150px;  }
 }
-/* TABLETI (od 768px naviše) */
+/* TABLETI (od 1024px naviše) */
 @media (max-width: 1024px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);  }
@@ -228,17 +228,16 @@ html, body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 450px;
+    max-height: 550px;
     overflow: auto;}
   .card-left img {
     width: 100%;
     max-width: 300px;  }
   .card-right {
-    height: auto;  }
+    height: auto;
+    overflow: unset;  }
   .more-btn{margin: 2px auto;}
 }
-  
-
 /* MOBITELI (do 767px) */
 @media (max-width: 767px) {
   .cigla-wrap {
@@ -263,10 +262,13 @@ html, body {
     text-align: left;
     overflow: visible;  }
   .filters {
-    flex-direction: column;
-    align-items: stretch; }
+     overflow: auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px 0; }
   .filters button {
-    width: 100%;  }
+    width: fit-content;
+    text-wrap: nowrap;  }
   .main-content h1,
   .stranica h1 {
     font-size: 1.5rem;
@@ -330,4 +332,62 @@ html, body {
     height: 90%;
     width: 90%;
     margin: 5px auto;  }
+}
+/*doradivanje*/
+.mobile-card-price,
+.mobile-admin-wrapper {
+  display: none;  }
+.artikl-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;  }
+@media only screen and (max-width:768px) {
+  .mobile-card-price {
+    display: block;
+    font-size: 28px;  }
+  .mobile-card-price-currency {
+    font-size: 24px;
+    font-weight: 500; }
+  .mobile-admin-wrapper {
+    display: block; }
+  .card {
+    height: unset;
+    max-height: unset;
+    opacity: 1; }
+  .card .dodaj-gumb,
+  .card .card-scrollable-body {
+    display: none;  }
+  .card h2 {
+    font-size: 24px;
+    text-transform: uppercase;  }
+  .card-left {
+    position: relative;
+    height: 100%;  }
+  .card-image-wrapper {
+    max-width: 400px;
+    max-height: 400px;
+    height: 100%;
+    margin: 0 auto;  }
+  .card-image-wrapper img {
+    display: block;
+    margin: 0 auto;
+    height: 100%;  }
+  .cigla-wrap {
+    opacity: 1;  }
+  .more-btn {
+    width: 100%;  }
+  .artikl-item {
+    padding: 10px 0;
+    p {
+      font-size: 24px;
+      margin-bottom: 10px;    }
+  }
+  .artikl-button-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;  }
 }

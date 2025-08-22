@@ -26,13 +26,7 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
           <h1>Vozila na prodaju</h1><br/>
 
           <div className="filters">
-            <button className={
-              selectedTag === "svi" 
-              ? "active" : ""} onClick={() => 
-              setSelectedTag("svi")
-              }>
-                Sve
-                </button>
+            <button className={ selectedTag === "svi" ? "active" : ""} onClick={() => setSelectedTag("svi")}>Sve</button>
             <button className={selectedTag === "eRomobil" ? "active" : ""} onClick={() => setSelectedTag("eRomobil")}>E-romobil</button>
             <button className={selectedTag === "eBajk" ? "active" : ""} onClick={() => setSelectedTag("eBajk")}>E-bike</button>
             <button className={selectedTag === "eScooter" ? "active" : ""} onClick={() => setSelectedTag("eScooter")}>E-skuter</button>

@@ -123,6 +123,9 @@ background-size: cover;
   object-fit: contain;
   margin-bottom: 10px;
 }
+.thumbnail-container{
+  overflow-x: auto;
+}
 .fixed-gumb-wrap {
   position: sticky;
   top: 0;

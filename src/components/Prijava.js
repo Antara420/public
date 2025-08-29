@@ -40,7 +40,7 @@ function Prijava() {
   };
 
   return (
-    <div className='page-layout'>
+    <div className='page-layout' style={{height:'492px'}}>
       <h1 style={{ color: 'white' }}>Pronađite nas</h1>
 
       <div className='cigla-wrap'>
@@ -88,9 +88,6 @@ function Prijava() {
         </div>
       </div>
 
-      <div className='site-footer'>
-        &copy; 2025. Sva prava pridržana.
-      </div>
     </div>
   );
 }

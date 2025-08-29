@@ -89,7 +89,7 @@ const handleKomentarSubmit = async (e) => {
 
   return (
     <div className='page-layout'>
-        <div className='cigla'>
+        <div className='cigla' style={{height:'500px'}}>
       
         <div className='levi'>
           <BackButton/>
@@ -161,9 +161,6 @@ const handleKomentarSubmit = async (e) => {
   )}
       </div>
 
-      <div className='site-footer'>
-        &copy; 2025. Sva prava pridržana.
-      </div>
     </div>
   );
 };

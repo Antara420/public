@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 import { useAuth } from './AuthContext';
 import { Link } from 'react-router-dom';
 import './uredi.css';
@@ -21,18 +21,25 @@ const AdminPanel = () => {
 
   const ADMIN_EMAIL = "anteo.augustincic@gmail.com";
   const isAdmin = !!user && user.email === ADMIN_EMAIL;
+  const tagovi = [
+  { value: "eRomobil", label: "E-romobil" },
+  { value: "eBajk", label: "E-bike" },
+  { value: "eScooter", label: "E-skuter" },
+  { value: "dodatnaOprema", label: "Kacige i dodatna oprema" },
+];
 
   useEffect(() => {
-    const fetchArtikli = async () => {
-      const querySnapshot = await getDocs(collection(db, 'prodaja'));
-      const podaci = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setArtikli(podaci);
-    };
-    fetchArtikli();
-  }, []);
+  const unsubscribe = onSnapshot(collection(db, 'prodaja'), (snapshot) => {
+    const podaci = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setArtikli(podaci);
+  });
+
+  // Clean up listener kad se komponenta unmounta
+  return () => unsubscribe();
+}, []);
 
   const pretvoriUSlikuBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -92,6 +99,10 @@ const AdminPanel = () => {
   };
 
   const dodajArtikl = async () => {
+      if (!noviArtikl.tag) {
+    alert("Molimo odaberite kategoriju proizvoda (tag).");
+    return;
+  }
     const totalSize = JSON.stringify(noviArtikl).length;
     if (totalSize > 950000) {
       alert("Ukupna veličina podataka prelazi Firestore ograničenje (1MB). Ukloni neke slike.");
@@ -127,7 +138,8 @@ const AdminPanel = () => {
 
           <input placeholder="Ime" value={noviArtikl.name} onChange={e => setNoviArtikl({ ...noviArtikl, name: e.target.value })} />
           <input placeholder="Cijena" value={noviArtikl.cijena} onChange={e => setNoviArtikl({ ...noviArtikl, cijena: e.target.value })} />
-          <input placeholder="Tag" value={noviArtikl.tag} onChange={e => setNoviArtikl({ ...noviArtikl, tag: e.target.value })} />
+          <select value={noviArtikl.tag} onChange={(e) => setNoviArtikl({ ...noviArtikl, tag: e.target.value })}>
+            <option value="">Odaberi kategoriju...</option>{tagovi.map((tag) => (<option key={tag.value} value={tag.value}> {tag.label} </option>))}</select>
           <input placeholder="Motor" value={noviArtikl.motor} onChange={e => setNoviArtikl({ ...noviArtikl, motor: e.target.value })} />
           <input placeholder="Ukratko" value={noviArtikl.ukratko} onChange={e => setNoviArtikl({ ...noviArtikl, ukratko: e.target.value })} />
           <input placeholder="Baterija" value={noviArtikl.baterija} onChange={e => setNoviArtikl({ ...noviArtikl, baterija: e.target.value })} />

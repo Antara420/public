@@ -212,8 +212,8 @@
   font-size: 20px;
 }
 .lijevi-blok, .desni-blok {
-  flex-grow: 1;        /* Omogući da zauzmu sav dostupan prostor */
-  min-width: 280px;    /* Minimalna širina radi responzivnosti */
+  flex-grow: 1;        
+  min-width: 280px;    
   padding: 20px;
   font-size: 20px;
 }

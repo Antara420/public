@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import BackButton from './ProslaStranica';
 
 
 function Registracija() {
@@ -41,15 +42,15 @@ function Registracija() {
   };
 
   return (
-    <div className='page-layout'>
-      <h1 style={{color:'white'}}>Pronađite nas</h1>
+    <div className='page-layout' style={{height:'492px'}}>
+      <h1 style={{color:'white'}}>Prijava</h1>
 
-      <div className='cigla-wrap'>
-        <div className='cigla'>
+      <div className='cigla-wrap'style={{height:'445px'}}>
+        <div className='cigla'style={{height:'445px', width:'500px', opacity:'97%'}}>
           
           <div style={{alignItems:'space-around', display:'block'}}>
             <h2 >Registracija</h2><br/><br/>
-            <form onSubmit={handleRegistracija}>
+            <form onSubmit={handleRegistracija} style={{margin:'7px'}}>
               <label htmlFor='ime'><strong>Ime:</strong></label><br/>
               <input
                 placeholder='Vaše ime'
@@ -86,17 +87,15 @@ function Registracija() {
                 onChange={(e) => setPotvrdaLozinke(e.target.value)}
                 required
               /><br/>
-              <button className='slatkis' type='submit'>Registriraj se</button>
+              <button style={{margin:'5px'}} className='slatkis' type='submit'>Registriraj se</button>
               {error && <p className='error'>{error}</p>}
-              {success && <p className='success'>{success}</p>}
+              {success && <p className='success'>{success}</p>}<br/><br/>
+              <BackButton />
             </form>
           </div>
         </div>
       </div>
 
-      <div className='site-footer'>
-        &copy; 2025. Sva prava pridržana.
-      </div>
     </div>
   );
 }

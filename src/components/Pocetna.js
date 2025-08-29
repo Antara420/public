@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from '../components/CartContext';
 import { useAuth } from '../components/AuthContext';
 import { useState } from "react";
+import Footer from "./Footer";
 
 const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
   const { dodajUKosaricu, poruka } = useCart();
@@ -26,7 +27,7 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
           <h1>Vozila na prodaju</h1><br/>
 
           <div className="filters">
-            <button className={ selectedTag === "svi" ? "active" : ""} onClick={() => setSelectedTag("svi")}>Sve</button>
+            <button className={selectedTag === "svi" ? "active" : ""} onClick={() => setSelectedTag("svi")}>Sve</button>
             <button className={selectedTag === "eRomobil" ? "active" : ""} onClick={() => setSelectedTag("eRomobil")}>E-romobil</button>
             <button className={selectedTag === "eBajk" ? "active" : ""} onClick={() => setSelectedTag("eBajk")}>E-bike</button>
             <button className={selectedTag === "eScooter" ? "active" : ""} onClick={() => setSelectedTag("eScooter")}>E-skuter</button>
@@ -86,10 +87,7 @@ const Pocetna = ({ prodaja, selectedTag, setSelectedTag }) => {
           </div>
         </div>
       </div>
-
-      <div className='site-footer'>
-        &copy; 2025. Sva prava pridržana.
-      </div>
+            
     </div>
   );
 };

@@ -3,7 +3,7 @@ import './kosara.css';
 function Adresa(){
     return(
        <div className="cigla-wrap">
-        <h1>Pronađite nas</h1>
+        <h1 style={{textAlign:'center'}}>Pronađite nas</h1>
            <div className='main-content'>       
                 <div className='cigla-wrap'>
                     <div className='kosara'>
@@ -20,9 +20,7 @@ function Adresa(){
                          </div>
                    </div>
                </div>
-            <div className='site-footer'>
-                &copy; 2025. Sva prava pridržana.
-            </div>
+
            
            </div>
        </div>

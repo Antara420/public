@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import {
-  collection,
-  query,
-  onSnapshot,
-  where,
-  doc,
-  getDoc
-} from "firebase/firestore";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';import { collection, query, onSnapshot, where, doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
 import './App.css';
-
+import Layout from './components/Layout';
 import Navbar from './components/Navbar';
 import Pocetna from './components/Pocetna';
 import ProizvodDetalji from './components/ProizvodDetalji';
@@ -21,18 +13,19 @@ import Registracija from "./components/Registracija";
 import Kosarica from "./components/Kosarica";
 import AdminPanel from "./components/AdminPanel";
 import UrediProizvod from "./components/UrediProizvod";
+import Footer from "./components/Footer";
 
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import { CartProvider } from "./components/CartContext";
 
+// App.js
 function AppContent() {
   const [prodaja, setProdaja] = useState([]);
   const [selectedTag, setSelectedTag] = useState("svi");
   const [isAdmin, setIsAdmin] = useState(false);
-
   const { user } = useAuth();
 
-  // Provjera admin prava
+  // Admin provjera
   useEffect(() => {
     const provjeriAdmina = async () => {
       if (!user) return;
@@ -45,7 +38,7 @@ function AppContent() {
     provjeriAdmina();
   }, [user]);
 
-  // Real-time dohvaćanje artikala
+  // Real-time artikli
   useEffect(() => {
     const q = selectedTag === "svi"
       ? collection(db, "prodaja")
@@ -62,32 +55,28 @@ function AppContent() {
         slika: docSnap.data().slika || "",
         ...docSnap.data()
       }));
-
       setProdaja(vozila);
     });
 
-    return () => unsubscribe(); // cleanup listener
+    return () => unsubscribe();
   }, [selectedTag]);
 
   return (
-    <div className='page-layout'>
-      <div className='header'>
-        <Navbar />
-      </div>
-
-      <Routes>
-        <Route path="/" element={<Pocetna prodaja={prodaja} selectedTag={selectedTag} setSelectedTag={setSelectedTag} />} />
-        <Route path="/adresa" element={<Adresa />} />
-        <Route path="/kosarica" element={<Kosarica />} />
-        <Route path="/prijava" element={<Prijava />} />
-        <Route path="/registracija" element={<Registracija />} />
-        <Route path="/proizvod/:id" element={<ProizvodDetalji />} />
-        <Route path="/admin/uredi/:id" element={<UrediProizvod />} />
-        {isAdmin && <Route path="/admin" element={<AdminPanel />} />}
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Pocetna prodaja={prodaja} selectedTag={selectedTag} setSelectedTag={setSelectedTag} />}/>
+        <Route path="adresa" element={<Adresa />} />
+        <Route path="kosarica" element={<Kosarica />} />
+        <Route path="prijava" element={<Prijava />} />
+        <Route path="registracija" element={<Registracija />} />
+        <Route path="proizvod/:id" element={<ProizvodDetalji />} />
+        <Route path="admin/uredi/:id" element={<UrediProizvod />} />
+        {isAdmin && <Route path="admin" element={<AdminPanel />} />}
+      </Route>
+    </Routes>
   );
 }
+
 
 function App() {
   return (

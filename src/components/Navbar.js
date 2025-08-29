@@ -28,7 +28,7 @@ const Navbar = () => {
         <ul className={`nav-menu ${isOpen ? 'open' : ''}`}>
           <li><Link to="/">Shop</Link></li>
           <li><Link to="/adresa">Adresa</Link></li>
-          <li><Link to="/kosarica">Košarica({kosarica.length})</Link></li>
+          <li><Link to="/kosarica">Košarica ({kosarica.reduce((ukupno, p) => ukupno + p.kolicina, 0)})</Link></li>
 
           {user ? (
             <>

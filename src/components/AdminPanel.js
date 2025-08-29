@@ -138,7 +138,7 @@ const AdminPanel = () => {
 
           <input placeholder="Ime" value={noviArtikl.name} onChange={e => setNoviArtikl({ ...noviArtikl, name: e.target.value })} />
           <input placeholder="Cijena" value={noviArtikl.cijena} onChange={e => setNoviArtikl({ ...noviArtikl, cijena: e.target.value })} />
-          <select value={noviArtikl.tag} onChange={(e) => setNoviArtikl({ ...noviArtikl, tag: e.target.value })}>
+          <select value={noviArtikl.tag} className='modern-select' onChange={(e) => setNoviArtikl({ ...noviArtikl, tag: e.target.value })}>
             <option value="">Odaberi kategoriju...</option>{tagovi.map((tag) => (<option key={tag.value} value={tag.value}> {tag.label} </option>))}</select>
           <input placeholder="Motor" value={noviArtikl.motor} onChange={e => setNoviArtikl({ ...noviArtikl, motor: e.target.value })} />
           <input placeholder="Ukratko" value={noviArtikl.ukratko} onChange={e => setNoviArtikl({ ...noviArtikl, ukratko: e.target.value })} />
